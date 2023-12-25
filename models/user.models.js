@@ -29,14 +29,14 @@ UserSchema.pre('save',async function(next){
     }
 })
 
-// UserSchema.methods.isValidPassword = async function(password){
-//      try {
-            
-//         return await bcrypt.compare(password,this.password)
-//      } catch (error) {
-//         throw httpCreateError.InternalServerError(err.message)  
-//      }
-// }
+UserSchema.methods.isValidPassword = async function(password){
+     try {
+        const status=await bcrypt.compare(password,this.password)
+        return status
+     } catch (error) {
+        throw httpCreateError.InternalServerError(err.message)  
+     }
+}
 
 
 
@@ -44,4 +44,4 @@ UserSchema.pre('save',async function(next){
 
 const User1 = mongoose.model('user1',UserSchema)
 
-module.exports = User1
+module.exports = User1;
