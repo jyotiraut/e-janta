@@ -412,3 +412,26 @@ input[type="submit"]:hover {
 }
 
 
+/*For location menu*/
+
+.search-location {
+  
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  align-items: center;
+}
+
+.search-location select {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.search-location::before {
+  content: '\25BC'; /* Unicode character for down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
