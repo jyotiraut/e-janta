@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/role');
+mongoose.connect('mongodb+srv://anup:20600921@cluster0.woygkpr.mongodb.net/?retryWrites=true&w=majority');
 
 const db = mongoose.connection;
 
