@@ -99,9 +99,31 @@ router.get('/user',async(req,res,next)=>{
     res.render('report')
 })
 
-router.get('/checkreport',async(req,res,next)=>{
+router.post('/user',upload.single('image'),async (req, res) => {
+    // Handle the form submission and save user data to the database
+    
+
+        // Create a new problem report
+        const newReport = new ProblemReport({
+            description: req.body.description,
+            title:req.body.title,
+            image:req.file.filename
+            });
+      // Save the report to the database
+       try {
+            await ProblemReport.insertMany([newReport])
+            res.render('home');
+        } catch (error) {
+          res.status(500).send('Error submitting report');
+        }
+      });
+      
+    
   
-    res.render('checkreport')
+
+router.get('/logout',async(req,res,next)=>{
+    req.logout()
+    res.redirect('/')
 })
 
 

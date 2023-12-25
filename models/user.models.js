@@ -11,7 +11,11 @@ const UserSchema = new mongoose.Schema({
     password:{
         type:String,
         required:true
-    }
+    },
+    problemReports: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ProblemReport'
+      }]
 })
 
 //Hasing the password

@@ -7,6 +7,7 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 require('dotenv').config()
 require('./helpers/auth_schema')
+
 const connectFlash = require('connect-flash')
  const session = require('express-session')
 
@@ -17,6 +18,7 @@ app.use(morgan('dev'))
 app.set('view engine','ejs')
 app.use(express.static('public'))
 app.use(express.json())
+app.use('/uploads', express.static('uploads'));
 app.use(express.urlencoded({extended:false}))
 //const passport = require('passport')
 
@@ -32,7 +34,8 @@ app.use(session({
     }
 }))
 
-
+// const storage = multer.memoryStorage();
+// const upload = multer({ storage: storage });
 
 
 
