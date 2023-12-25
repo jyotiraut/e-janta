@@ -84,11 +84,10 @@ router.post('/user',upload.single('image'),async (req, res) => {
       // Save the report to the database
        try {
             await ProblemReport.insertMany([newReport])
-          res.send('Report submitted successfully!');
+            res.render('home');
         } catch (error) {
           res.status(500).send('Error submitting report');
         }
-        res.render('home');
       });
       
     
