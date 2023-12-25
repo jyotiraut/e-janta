@@ -1,32 +1,60 @@
 <%- include('./layouts/header') %>
 
-<h1>Register</h1>
-<form action="/auth/register" method="post" class="lg-form">
-  <div>
-    <label for="email">Email/Username</label>
-    <input
-      type="text"
-      name="email"
-      id="email"
-      
-    />
-  </div>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" />
-  </div>
-  <div>
-    <label for="password2">Confirm password</label>
-    <input type="password" name="password2" id="password2" />
-  </div>
-  <div>
-    <input type="submit" value="Register" />
-  </div>
-</form>
-<div>
-  <p>
-    Already have an account? <span><a href="/auth/login">Login</a></span>
-  </p>
-</div>
-<br />
+<body>
+  <form action="#" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+      <h1>User Registration</h1>
+
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="image">Upload Image (PDF, PNG, JPG - Max 2MB):</label>
+      <input type="file" id="image" name="image" accept=".pdf, .png, .jpg" required>
+      <span class="error-message" id="image-error"></span>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required>
+      <span class="error-message" id="password-error"></span>
+
+      <input type="submit" value="Register">
+  </form>
+
+  <script>
+      function validateForm() {
+          var imageInput = document.getElementById('image');
+          var imageError = document.getElementById('image-error');
+          var passwordInput = document.getElementById('password');
+          var confirmPasswordInput = document.getElementById('confirmPassword');
+          var passwordError = document.getElementById('password-error');
+
+          // Validate image size
+          if (imageInput.files.length > 0) {
+              var imageSize = imageInput.files[0].size; // in bytes
+              var maxSize = 2 * 1024 * 1024; // 2MB
+              if (imageSize > maxSize) {
+                  imageError.innerHTML = 'Image size should not exceed 2MB.';
+                  return false;
+              } else {
+                  imageError.innerHTML = '';
+              }
+          }
+
+          // Validate password match
+          if (passwordInput.value !== confirmPasswordInput.value) {
+              passwordError.innerHTML = 'Passwords do not match.';
+              return false;
+          } else {
+              passwordError.innerHTML = '';
+          }
+
+          return true;
+      }
+  </script>
+</body>
+
 <%- include('./layouts/footer') %>

@@ -1,23 +1,27 @@
 <%- include('./layouts/header') %>
 
-<h1><span class="goback" onclick="window.history.back()">--</span>profile</h1>
-<div class="profile">
-<div>
-    <p class="title">ID</p>
-    <p class="subtitle"></p>
-</div>
+<script>
+    function logout() {
+        // Call the server-side endpoint to handle logout
+        fetch('/auth/logout', {
+            method: 'POST', // You might use GET or other methods depending on your server implementation
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // If logout is successful, redirect or perform other actions
+                    alert('Logout successful!');
+                    // You might want to redirect to another page after logout
+                    window.location.href = '/auth/login'; // Example: Redirect to the login page
+                } else {
+                    alert('Logout failed!');
+                }
+            })
+            .catch(error => console.error('Error during logout:', error));
+    }
+</script>
 
-<div>
-    <p class="title">Email/username</p>
-    <p class="subtitle"></p>
-</div>
-<div>
-    <p class="title">Role</p>
-    <p class="subtitle"></p>
-</div>
-<div>
-    <p class="title">User Object</p>
-    <p class="subtitle"></p>
-</div>
-</div>
 <%- include('./layouts/footer') %>
