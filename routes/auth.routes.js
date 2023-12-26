@@ -64,6 +64,10 @@ router.post('/register',async(req,res,next)=>{
    }
 })
 
+router.get('/user',async(req,res,next)=>{
+    res.render('report')
+})
+
 router.get('/logout',async(req,res,next)=>{
     req.logout()
     res.redirect('/')
