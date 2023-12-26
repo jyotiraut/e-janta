@@ -12,6 +12,7 @@ const connectFlash = require('connect-flash')
  const session = require('express-session')
 
 
+
 //initialization
 const app = express()
 app.use(morgan('dev'))
@@ -23,27 +24,27 @@ app.use(express.urlencoded({extended:false}))
 //const passport = require('passport')
 
 //init session 
-app.use(session({
-    secret:process.env.SECRET_SESSION,
-    resave: false,
-    saveUninitialized:false,
-    cookie:{
-        secure:true,
-        httpOnly:true
+// app.use(session({
+//     secret:process.env.SECRET_SESSION,
+//     resave: false,
+//     saveUninitialized:false,
+//     cookie:{
+//         //secure:true
+//         httpOnly:true
 
-    }
-}))
+//     }
+// }))
 
 // const storage = multer.memoryStorage();
 // const upload = multer({ storage: storage });
 
 
 
-app.use(connectFlash());
- app.use((req, res, next) => {
-  res.locals.messages = req.flash();
-  next();
-});
+// app.use(connectFlash());
+// app.use((req, res, next) => {
+//   res.locals.messages = req.flash();
+//   next();
+// });
 
 //routes
 app.use('/',require('./routes/index.routes'))
