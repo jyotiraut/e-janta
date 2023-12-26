@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
-router.get('/profile',async(req,res,next)=>{
-    res.send("profile")
+router.get('/alert',async(req,res,next)=>{
+    res.send("alert")
 })
 
 module.exports = router
